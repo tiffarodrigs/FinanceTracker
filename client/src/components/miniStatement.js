@@ -1,13 +1,13 @@
 import React,{useEffect, useState} from "react";
-import {
-  TableContainer,
-  Paper,
-  Table,
-  TableHead,
-  TableBody,
-  TableRow,
-  TableCell,
-} from '@mui/material';
+// import {
+//   TableContainer,
+//   Paper,
+//   Table,
+//   TableHead,
+//   TableBody,
+//   TableRow,
+//   TableCell,
+// } from '@mui/material';
 import DashboardTransaction from "./dashbordTransaction";
 
 const MiniStatement = () => {
@@ -28,13 +28,14 @@ const MiniStatement = () => {
     return;
   }, [records.length]);
   return (
-    records.map((row)=>{
-  
+    records.map(({category, date, value})=>{return(
+  <>
       <div>
-        <DashboardTransaction category={row.category} date={row.date} value={row.value}/>
+        <DashboardTransaction category={category} date={date} value={value}/>
         {/* <DashboardTransaction record={row}/> */}
 
       </div>
+      </>)
     }))
   // <TableContainer component={Paper}>
   //   <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
