@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 
-export default function Create() {
+export default function Create({onCreate}) {
   const [form, setForm] = useState({
     transactionType: '',
     category: '',
@@ -39,7 +39,7 @@ export default function Create() {
     category: '',
     date: '',
     value: '', });
-    navigate('/');
+    onCreate();
   }
 
   // This following section will display the form that takes the input from the user.

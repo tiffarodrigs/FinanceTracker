@@ -44,10 +44,13 @@ const Record = (props) => (
 export default function RecordList() {
   const [records, setRecords] = useState([]);
   const[open,setOpen]=useState(false)
+  
   const handleAddTransaction = ()=>{
   setOpen(true)
-
   }
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   // This method fetches the records from the database.
   useEffect(() => {
@@ -152,7 +155,7 @@ export default function RecordList() {
             fullWidth
             variant="standard"
           /> */}
-          <Create/>
+          <Create onCreate={handleClose}/>
         </DialogContent>
         {/* <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
