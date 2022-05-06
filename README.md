@@ -10,3 +10,6 @@
 #### Tuesday, May 03
 * https://www.mongodb.com/languages/mern-stack-tutorial
 * https://cloud.mongodb.com/v2/6271fa7a74fb9e23c22cdf99#clusters
+
+#### Friday May06
+* watch meanstack setup.
