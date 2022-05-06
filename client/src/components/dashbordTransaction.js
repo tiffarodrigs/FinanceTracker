@@ -3,14 +3,14 @@ import { Typography } from '@mui/material';
 const DashboardTransaction = ({category,date,value})=>{
   return(
     <>
-    <div>
+    <div >
       <Typography variant="subtitle2" align="left">
       {category}
       </Typography>
-      <Typography variant="caption" align="left">
+      <Typography style={{fontSize: "11px"}}variant="caption" align="left">
       {date}
       </Typography>
-      <Typography variant="body2" align="right">
+      <Typography style={{fontSize: "15px"}}variant="caption" align="right">
       {value}
       </Typography>
     </div>
