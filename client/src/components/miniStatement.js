@@ -1,4 +1,5 @@
-import React,{useEffect, useState} from "react";
+import React, { useEffect, useState } from 'react';
+import List from '@mui/material/List';
 // import {
 //   TableContainer,
 //   Paper,
@@ -8,7 +9,7 @@ import React,{useEffect, useState} from "react";
 //   TableRow,
 //   TableCell,
 // } from '@mui/material';
-import DashboardTransaction from "./dashbordTransaction";
+import DashboardTransaction from './dashbordTransaction';
 
 const MiniStatement = () => {
   const [records, setRecords] = useState([]);
@@ -22,21 +23,20 @@ const MiniStatement = () => {
         return;
       }
       const records = await response.json();
-      setRecords(records.splice(0,5));
+      setRecords(records.splice(0, 5));
     }
     getRecords();
     return;
   }, [records.length]);
   return (
-    records.map(({category, date, value})=>{return(
-  <>
-      <div>
-        <DashboardTransaction category={category} date={date} value={value}/>
-        {/* <DashboardTransaction record={row}/> */}
-
-      </div>
-      </>)
-    }))
+    <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+      {records.map(({ category, date, value }) => {
+        return (
+          <DashboardTransaction category={category} date={date} value={value} />
+        );
+      })}
+    </List>
+  );
   // <TableContainer component={Paper}>
   //   <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
   //     <TableHead>
@@ -44,7 +44,7 @@ const MiniStatement = () => {
   //         <TableCell align="right">Transaction type</TableCell>
   //         <TableCell align="right">Category</TableCell>
   //         <TableCell align="right" >Amount</TableCell>
-        
+
   //       </TableRow>
   //     </TableHead>
   //     <TableBody>
@@ -62,7 +62,6 @@ const MiniStatement = () => {
   //     </TableBody>
   //   </Table>
   // </TableContainer>
-
-}
+};
 
 export default MiniStatement;

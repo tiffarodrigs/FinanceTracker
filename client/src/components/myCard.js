@@ -7,10 +7,32 @@ import Typography from '@mui/material/Typography';
 
 
 
-const MyCard =({title,content, footer}) => {
+const MyCard =({title,content, footer, type}) => {
+  const sx = {margin: 2};
+  if(type === 'long'){
+    sx['maxWidth'] = 250;
+    sx['minWidth'] = 250;
+    sx['maxHeight'] = 400;
+    sx['minHeight'] = 400;
+  } else if(type === "wide"){
+
+    sx['maxWidth'] = 400;
+    sx['minWidth'] = 400;
+    sx['maxHeight'] = 450;
+    sx['minHeight'] = 450;
+  } else {
+
+    sx['maxWidth'] = 150;
+    sx['minWidth'] = 150;
+    sx['maxHeight'] = 150;
+    sx['minHeight'] = 150;
+    sx['margin'] = 2;
+  }
   return (
-    <Card sx={{ maxWidth: 250, minWidth: 250, margin: 2 }}>
-      <CardContent>
+   
+    <Card sx={sx}>
+   
+      <CardContent sx>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           {title}
         </Typography>
