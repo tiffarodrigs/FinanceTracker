@@ -7,7 +7,7 @@ const Dashboard = (props) =>{
     <div style={{display:'flex', padding: '5px'}}>
     <MyCard title={"savings"} content={"$5000"} />
     <MyCard title={"income"} content={"$7000"}/>
-    <MyCard title={"Transaction History"} content={<MiniStatement/>}/>
+    <MyCard style={{minWidth: "100vh"}} title={"Transaction History"} content={<MiniStatement/>}/>
     </div>
 
   );
