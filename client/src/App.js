@@ -24,7 +24,7 @@ const App = () => {
           <Route path='/recordlist' element={<RecordList />} />
         </Routes>
       </div>
-    </>
+      </>
   );
 };
 

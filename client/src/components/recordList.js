@@ -9,14 +9,7 @@ import {
   TableRow,
   TableCell,
 } from '@mui/material';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import Create from './create';
+import ConnectedCreateTransaction from './ConnectedCreateTransaction';
 
 const Record = (props) => (
   <tr>
@@ -43,15 +36,6 @@ const Record = (props) => (
 
 export default function RecordList() {
   const [records, setRecords] = useState([]);
-  const[open,setOpen]=useState(false)
-  
-  const handleAddTransaction = ()=>{
-  setOpen(true)
-  }
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   // This method fetches the records from the database.
   useEffect(() => {
     async function getRecords() {
@@ -70,7 +54,7 @@ export default function RecordList() {
     getRecords();
 
     return;
-  }, [records.length]);
+  }, []);
 
   // This method will delete a record
   async function deleteRecord(id) {
@@ -89,7 +73,7 @@ export default function RecordList() {
         <Record
           record={record}
           deleteRecord={() => deleteRecord(record._id)}
-          key={record._id}
+          key={record.id}
         />
       );
     });
@@ -135,34 +119,7 @@ export default function RecordList() {
         </Table>
       </TableContainer>
     </Paper>
-    <div>
-      <Button variant="outlined" onClick={handleAddTransaction}>
-        Add  Transaction
-      </Button>
-      <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Subscribe</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            To subscribe to this website, please enter your email address here. We
-            will send updates occasionally.
-          </DialogContentText>
-          {/* <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Email Address"
-            type="email"
-            fullWidth
-            variant="standard"
-          /> */}
-          <Create onCreate={handleClose}/>
-        </DialogContent>
-        {/* <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Subscribe</Button>
-        </DialogActions> */}
-      </Dialog>
-    </div>
+    <ConnectedCreateTransaction />
     </>
   );
 }

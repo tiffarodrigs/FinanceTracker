@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router';
 
-export default function Create({onCreate}) {
+export default function Create({saveTransaction}) {
   const [form, setForm] = useState({
     transactionType: '',
     category: '',
     date: '',
     value: '',
   });
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   // These methods will update the state properties.
   function updateForm(value) {
@@ -20,26 +19,27 @@ export default function Create({onCreate}) {
   // This function will handle the submission.
   async function onSubmit(e) {
     e.preventDefault();
+    saveTransaction({...form})
 
     // When a post request is sent to the create url, we'll add a new record to the database.
-    const newTransaction = { ...form };
+    // const newTransaction = { ...form };
 
-    await fetch('http://localhost:5000/transactions/add', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newTransaction),
-    }).catch((error) => {
-      window.alert(error);
-      return;
-    });
+    // const res = await fetch('http://localhost:5000/transactions/add', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify(newTransaction),
+    // }).catch((error) => {
+    //   return;
+    // });
 
+    // console.log(res)
     setForm({ transactionType: '',
     category: '',
     date: '',
     value: '', });
-    onCreate();
+    //onCreate();
   }
 
   // This following section will display the form that takes the input from the user.

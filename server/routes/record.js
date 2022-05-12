@@ -18,6 +18,7 @@ recordRoutes.route("/transactions").get(function (req, res) {
   db_connect
     .collection("transactions")
     .find({})
+    .sort({"date": -1})
     .toArray(function (err, result) {
       if (err) throw err;
       res.json(result);
@@ -39,7 +40,7 @@ recordRoutes.route("/transactions/:id").get(function (req, res) {
 // This section will help you create a new record.
 recordRoutes.route("/transactions/add").post(function (req, response) {
   let db_connect = dbo.getDb();
-  let myobj = {...req.body};
+  let myobj = {...req.body, date: new Date(req.body.date)};
   db_connect.collection("transactions").insertOne(myobj, function (err, res) {
     if (err) throw err;
     response.json(res);
