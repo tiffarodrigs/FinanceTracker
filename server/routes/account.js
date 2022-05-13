@@ -6,10 +6,10 @@ const ObjectId = require("mongodb").ObjectId;
 
 
 accountRoutes.route("/users/:userId/accounts").get(function (req, res) {
-  let db_connect = dbo.getDb("transactions");
+  let db_connect = dbo.getDb("FinanceTracker");
   db_connect
-    .collection("transactions")
-    .find({})
+    .collection("Account")
+    .find({userId: ObjectId(req.params.userId)})
     .sort({"date": -1})
     .toArray(function (err, result) {
       if (err) throw err;

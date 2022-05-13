@@ -44,6 +44,12 @@ export const fetchCategories = () => {
 export const fetchTransactionType=() => {
   return async dispatch => {
     const response = await client.get('http://localhost:5000/transaction/transactionType',{});
-    dispatch({type : actionTypes.FETCH_TRANSACTION_TYPE_SUCCESS})
+    dispatch({type : actionTypes.FETCH_TRANSACTION_TYPE_SUCCESS, data: response.data})
+  }
+}
+export const fetchAccount=() => {
+  return async dispatch => {
+    const response = await client.get('http://localhost:5000/users/627ca7e3d894e4be9eee0da0/accounts',{});
+    dispatch({type : actionTypes.FETCH_ACCOUNT_SUCCESS, data: response.data})
   }
 }

@@ -7,6 +7,7 @@ app.use(cors());
 app.use(express.json());
 app.use(require("./routes/transaction"));
 app.use(require("./routes/login"));
+app.use(require("./routes/account"));
 // get driver connection
 const dbo = require("./db/conn");
  

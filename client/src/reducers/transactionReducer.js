@@ -1,26 +1,26 @@
 import * as actionTypes from '../actions/ActionTypes';
-const transactions = (state=[],action)=>{
-  switch(action.type){
-    case 'FETCH_TRANSACTIONS_SUCCESS':
-      {
-        return [...action.data];
-      }
-  // case 'DELETE_TRANSACTION':
-  //   let newState = { ...state };
-  //   delete newState[id];
-  //   return newState;
+const transactions = (state = [], action) => {
+  switch (action.type) {
+    case actionTypes.FETCH_TRANSACTIONS_SUCCESS: {
+      console.log('action ', action);
+      return [...action.data];
+    }
+    // case 'DELETE_TRANSACTION':
+    //   let newState = { ...state };
+    //   delete newState[id];
+    //   return newState;
 
-  // case 'UPDATE_TRANSACTION':
-  //   let updatedState = Object.assign({},state,{id :_id});
-  //   //const newTicket = Object.assign({}, state[id], {formattedWaitTime});
-  //   //const updatedState = Object.assign({}, state, {
-  //    // [id]: newTicket
+    // case 'UPDATE_TRANSACTION':
+    //   let updatedState = Object.assign({},state,{id :_id});
+    //   //const newTicket = Object.assign({}, state[id], {formattedWaitTime});
+    //   //const updatedState = Object.assign({}, state, {
+    //    // [id]: newTicket
 
-  //   return updatedState;
+    //   return updatedState;
     default:
       return state;
-}
-}
+  }
+};
 
 const isModalShown = (state = false, action) => {
   switch (action.type) {

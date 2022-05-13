@@ -1,11 +1,12 @@
 import {connect} from 'react-redux'
 import CreateTransaction from './CreateTransaction';
-import {addTransaction, saveTransaction,fetchCategories,fetchTransactionType} from '../actions';
+import {addTransaction, saveTransaction,fetchCategories,fetchTransactionType,fetchAccount} from '../actions';
 
 const mapStateToProps = (state) => ({
   isModalOpen: state.isModalShown,
   categories: state.categories,
-  transactionType :state.transactionType
+  transactionType :state.transactionType,
+  account : state.account
 });
 
 const mapDispatch = {
@@ -13,7 +14,8 @@ const mapDispatch = {
   fetchCategories : fetchCategories,
   onClick: addTransaction,
   onCloseModal: saveTransaction,
-  saveTransaction: saveTransaction
+  saveTransaction: saveTransaction,
+  fetchAccount : fetchAccount
 }
 
 

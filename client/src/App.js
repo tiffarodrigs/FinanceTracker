@@ -11,6 +11,7 @@ import RecordList from './components/RecordList';
 import Edit from './components/edit';
 import Create from './components/create';
 import Dashboard from './components/dashboard';
+import ConnectedRecordList from './components/ConnectedRecordList';
 
 const App = () => {
   return (
@@ -21,7 +22,7 @@ const App = () => {
         <Routes>
           <Route exact path='/' element={<Dashboard />} />
           <Route path='/edit/:id' element={<Edit />} />
-          <Route path='/recordlist' element={<RecordList />} />
+          <Route path='/recordlist' element={<ConnectedRecordList />} />
         </Routes>
       </div>
       </>

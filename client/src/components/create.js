@@ -4,8 +4,9 @@ import BasicSelect from './selectComponent';
 import BasicDatePicker from './basicDatePickerComponent';
 
 
-export default function Create({saveTransaction,categories,transactionType}) {
+export default function Create({saveTransaction,categories,transactionType,account}) {
   const [form, setForm] = useState({
+    account: '',
     transactionType: '',
     category: '',
     date: '',
@@ -38,7 +39,9 @@ export default function Create({saveTransaction,categories,transactionType}) {
     //   return;
     // });
 
-    setForm({ transactionType: '',
+    setForm({
+      account : '',
+    transactionType: '',
     category: '',
     date: '',
     value: '', });  
@@ -49,6 +52,9 @@ export default function Create({saveTransaction,categories,transactionType}) {
     <div>
       <h3>Create New Transaction</h3>
       <form onSubmit={onSubmit}>
+        <div className='form-group'>
+          <BasicSelect  items={account} displayLabel ="Account" label="account" selectedValue={form.account} id="123" onChange={(e) => updateForm({account: e.target.value})}/>
+        </div>
         <div className='form-group'>
           <BasicSelect  items={transactionType} displayLabel ="Transaction Type" label="transactionType" selectedValue={form.transactionType} id="123" onChange={(e) => updateForm({transactionType: e.target.value})}/>
         </div>

@@ -34,9 +34,9 @@ const Record = (props) => (
   </tr>
 );
 
-export default function RecordList({fetchTransactions}) {
+export default function RecordList({fetchTransactions, transactions}) {
   const [records, setRecords] = useState([]);
-  // This method fetches the records from the database.
+  // This method fetches the transactions from the database.
   useEffect(() => {
     fetchTransactions()
   }, []);
@@ -51,9 +51,9 @@ export default function RecordList({fetchTransactions}) {
     setRecords(newRecords);
   }
 
-  // This method will map out the records on the table
+  // This method will map out the transactions on the table
   function recordList() {
-    return records.map((record) => {
+    return transactions.map((record) => {
       return (
         <Record
           record={record}
@@ -64,7 +64,7 @@ export default function RecordList({fetchTransactions}) {
     });
   }
 
-  // This following section will display the table with the records of individuals.
+  // This following section will display the table with the transactions of individuals.
   return (
     <>
     <Paper sx={{ width: '100%' }}>
@@ -81,7 +81,7 @@ export default function RecordList({fetchTransactions}) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {records.map((record) => {
+            {transactions.map((record) => {
               return (
                 <TableRow
                   key={record.id}
