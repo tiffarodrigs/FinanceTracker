@@ -6,7 +6,7 @@ const mapStateToProps = (state) => ({
   isModalOpen: state.isModalShown,
   categories: state.categories,
   transactionType :state.transactionType,
-  account : state.account
+  accounts : state.accounts
 });
 
 const mapDispatch = {

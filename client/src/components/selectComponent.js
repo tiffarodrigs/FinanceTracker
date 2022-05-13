@@ -25,7 +25,7 @@ export default function BasicSelect({
           onChange={onChange}
         >
           {items.map((element) => (
-            <MenuItem value={element.label}>{element.label}</MenuItem>
+            <MenuItem key={element._id} value={element.label}>{element.label}</MenuItem>
           ))}
         </Select>
       </FormControl>
