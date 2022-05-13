@@ -19,13 +19,12 @@ export default function BasicSelect({
         <InputLabel id={`${displayLabel}-${label}`}>{displayLabel}</InputLabel>
         <Select
           labelId={`${displayLabel}-${label}`}
-          id={id}
           value={selectedValue}
           label={label}
           onChange={onChange}
         >
           {items.map((element) => (
-            <MenuItem key={element._id} value={element.label}>{element.label}</MenuItem>
+            <MenuItem key={element._id} value={element._id}>{element.label}</MenuItem>
           ))}
         </Select>
       </FormControl>

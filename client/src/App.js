@@ -7,10 +7,8 @@ import { Route, Routes } from 'react-router-dom';
 import Sidebar from './components/sidebar';
 
 import Navbar from './components/navbar';
-import RecordList from './components/RecordList';
 import Edit from './components/edit';
-import Create from './components/create';
-import Dashboard from './components/dashboard';
+import ConnnectedDashborad from './components/ConnectedDashboard';
 import ConnectedRecordList from './components/ConnectedRecordList';
 
 const App = () => {
@@ -20,7 +18,7 @@ const App = () => {
       <Sidebar />
       <div className='App' style={{position: 'relative', top: '64px', left: '60px'}}>
         <Routes>
-          <Route exact path='/' element={<Dashboard />} />
+          <Route exact path='/' element={<ConnnectedDashborad />} />
           <Route path='/edit/:id' element={<Edit />} />
           <Route path='/recordlist' element={<ConnectedRecordList />} />
         </Routes>

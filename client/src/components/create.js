@@ -64,7 +64,6 @@ export default function Create({
             displayLabel='Account'
             label='account'
             selectedValue={form.account}
-            id='123'
             onChange={(e) => updateForm({ account: e.target.value })}
           />
         </div>
@@ -74,7 +73,6 @@ export default function Create({
             displayLabel='Transaction Type'
             label='transactionType'
             selectedValue={form.transactionType}
-            id='123'
             onChange={(e) => updateForm({ transactionType: e.target.value })}
           />
         </div>
