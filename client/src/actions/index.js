@@ -30,5 +30,14 @@ export const addTransaction = () => ({
 
 export const fetchTransaction = () => ({
   type: actionTypes.FETCH_TRANSACTIONS
-})
+});
+
+export const fetchCategories = () => {
+  return async dispatch => {
+    const response = await client.get('http://localhost:5000/transaction/categories',{});
+    dispatch({type : actionTypes.FETCH_CATEGORY_SUCCESS, data : response.data})
+
+
+  }
+}
 

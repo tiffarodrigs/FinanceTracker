@@ -3,7 +3,6 @@ const transactions = (state=[],action)=>{
   switch(action.type){
     case 'FETCH_TRANSACTIONS_SUCCESS':
       {
-        console.log({action});
         return [...action.data];
       }
   // case 'DELETE_TRANSACTION':

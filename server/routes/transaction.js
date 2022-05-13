@@ -14,9 +14,9 @@ const ObjectId = require("mongodb").ObjectId;
 
 // This section will help you get a list of all the records.
 recordRoutes.route("/transactions").get(function (req, res) {
-  let db_connect = dbo.getDb("transactions");
+  let db_connect = dbo.getDb("FinanceTracker");
   db_connect
-    .collection("transactions")
+    .collection("Transactions")
     .find({})
     .sort({"date": -1})
     .toArray(function (err, result) {
@@ -30,8 +30,19 @@ recordRoutes.route("/transactions/:id").get(function (req, res) {
   let db_connect = dbo.getDb();
   let myquery = { _id: ObjectId( req.params.id )};
   db_connect
-      .collection("transactions")
+      .collection("Transactions")
       .findOne(myquery, function (err, result) {
+        if (err) throw err;
+        res.json(result);
+      });
+});
+
+// 
+recordRoutes.route("/transaction/categories").get(function (req, res) {
+  let db_connect = dbo.getDb();
+  db_connect
+      .collection("TransactionCategory")
+      .find({}).toArray( function (err, result) {
         if (err) throw err;
         res.json(result);
       });
@@ -41,7 +52,7 @@ recordRoutes.route("/transactions/:id").get(function (req, res) {
 recordRoutes.route("/transactions/add").post(function (req, response) {
   let db_connect = dbo.getDb();
   let myobj = {...req.body, date: new Date(req.body.date)};
-  db_connect.collection("transactions").insertOne(myobj, function (err, res) {
+  db_connect.collection("Transactions").insertOne(myobj, function (err, res) {
     if (err) throw err;
     response.json(res);
   });
@@ -64,7 +75,7 @@ recordRoutes.route("/transactions/:id").put(function (req, response) {
 recordRoutes.route("/transactions/:id").delete((req, response) => {
   let db_connect = dbo.getDb();
   let myquery = { _id: ObjectId( req.params.id )};
-  db_connect.collection("transactions").deleteOne(myquery, function (err, obj) {
+  db_connect.collection("Transactions").deleteOne(myquery, function (err, obj) {
     if (err) throw err;
     console.log("1 document deleted");
     response.json(obj);

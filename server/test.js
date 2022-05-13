@@ -11,3 +11,47 @@ dbo.connectToServer(function (err) {
     console.log(res)
   });
 });
+
+
+/*
+user:
+- id
+- userName
+- Password
+- Email
+- FName
+- LName
+
+Accounts:
+- id
+- startingBalance
+- AccountType : [Checking, Savings, Loan, Credit Card]
+- NickName
+- userId
+
+{
+"startingBalance":100,
+"accountType":"",
+"nickName": "My Checking",
+"userId":"",
+}
+
+Transactions:
+- id
+- transaction type [expense | income]
+- date
+- value
+- notes
+- category
+- accountId
+
+Transaction Type:
+- id
+- name
+
+Transaction Category
+- id
+- Label
+
+
+*/

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -7,22 +7,26 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Create from './create';
 
-const CreateTransaction = ({onClick, onCloseModal, isModalOpen, saveTransaction}) => (
+const CreateTransaction = ({onClick, onCloseModal, isModalOpen, saveTransaction, fetchCategories, categories,transactionType}) => {
+  useEffect(() => {
+    fetchCategories();
+  },[])
+  return (
   <div>
       <Button variant="outlined" onClick={onClick}>
         Add  Transaction
       </Button>
       <Dialog open={isModalOpen} onClose={onCloseModal}>
-        <DialogTitle>Subscribe</DialogTitle>
+        {/* <DialogTitle>Subscribe</DialogTitle> */}
         <DialogContent>
-          <DialogContentText>
+          {/* <DialogContentText>
             To subscribe to this website, please enter your email address here. We
             will send updates occasionally.
-          </DialogContentText>
-          <Create saveTransaction={saveTransaction}/>
+          </DialogContentText> */}
+          <Create saveTransaction={saveTransaction} categories={categories} transactionType = {transactionType}/>
         </DialogContent>
       </Dialog>
     </div>
-);
+)};
 
 export default CreateTransaction;

@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
+import TextField from '@mui/material/TextField';
+import BasicSelect from './selectComponent';
+//import MenuItem from '@mui/material/MenuItem';
+//import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+// import ResponsiveDatePickers from './datePickerComponent';
 
-export default function Create({saveTransaction}) {
+
+export default function Create({saveTransaction,categories,transactionType}) {
   const [form, setForm] = useState({
     transactionType: '',
     category: '',
@@ -48,26 +54,21 @@ export default function Create({saveTransaction}) {
       <h3>Create New Transaction</h3>
       <form onSubmit={onSubmit}>
         <div className='form-group'>
-          <label htmlFor='transactionType'>Transaction Type</label>
+          {/* <label htmlFor='transactionType'>Transaction Type</label>
           <input
             type='text'
             className='form-control'
             id='transactionType'
             value={form.transactionType}
             onChange={(e) => updateForm({ transactionType: e.target.value })}
-          />
+          /> */}
+          <BasicSelect items={transactionType} displayLabel ="Transaction Type" label="Transaction"selectedValue="Expense" id="123"/>
         </div>
         <div className='form-group'>
-          <label htmlFor='category'>Category</label>
-          <input
-            type='text'
-            className='form-control'
-            id='category'
-            value={form.category}
-            onChange={(e) => updateForm({ category: e.target.value })}
-          />
+          <BasicSelect items={categories} displayLabel ="Category" label="Category"selectedValue="Utilities" id="123"/>
         </div>
         <div className='form-group'>
+        {/* <DatePickerComponent/> */}
           <label htmlFor='date'>Date</label>
           <input
             type='text'
@@ -77,8 +78,17 @@ export default function Create({saveTransaction}) {
             onChange={(e) => updateForm({ date: e.target.value })}
           />
         </div>
+
         <div className='form-group'>
           <label htmlFor='value'>Amount</label>
+          {/* <TextField inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} />
+          <InputLabel htmlFor="standard-adornment-amount">Amount</InputLabel>
+          <Input
+            id="standard-adornment-amount"
+            value={values.amount}
+            onChange={handleChange('amount')}
+            startAdornment={<InputAdornment position="start">$</InputAdornment>}
+          /> */}
           <input
             type='text'
             className='form-control'
