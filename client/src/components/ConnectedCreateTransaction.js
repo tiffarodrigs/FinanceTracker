@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import CreateTransaction from './CreateTransaction';
-import {addTransaction, saveTransaction,fetchCategories} from '../actions';
+import {addTransaction, saveTransaction,fetchCategories,fetchTransactionType} from '../actions';
 
 const mapStateToProps = (state) => ({
   isModalOpen: state.isModalShown,
@@ -9,6 +9,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatch = {
+  fetchTransactionType:fetchTransactionType,
   fetchCategories : fetchCategories,
   onClick: addTransaction,
   onCloseModal: saveTransaction,

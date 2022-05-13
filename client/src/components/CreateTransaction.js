@@ -7,9 +7,10 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Create from './create';
 
-const CreateTransaction = ({onClick, onCloseModal, isModalOpen, saveTransaction, fetchCategories, categories,transactionType}) => {
+const CreateTransaction = ({onClick, onCloseModal, isModalOpen, saveTransaction, fetchCategories, categories,transactionType,fetchTransactionType}) => {
   useEffect(() => {
     fetchCategories();
+    fetchTransactionType();
   },[])
   return (
   <div>

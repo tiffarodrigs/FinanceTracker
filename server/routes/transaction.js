@@ -47,6 +47,15 @@ recordRoutes.route("/transaction/categories").get(function (req, res) {
         res.json(result);
       });
 });
+recordRoutes.route("/transaction/transactionType").get(function (req, res) {
+  let db_connect = dbo.getDb();
+  db_connect
+      .collection("TransactionType")
+      .find({}).toArray( function (err, result) {
+        if (err) throw err;
+        res.json(result);
+      });
+});
 
 // This section will help you create a new record.
 recordRoutes.route("/transactions/add").post(function (req, response) {
