@@ -7,7 +7,7 @@ import { Route, Routes } from 'react-router-dom';
 import Sidebar from './components/sidebar';
 
 import Navbar from './components/navbar';
-import RecordList from './components/recordList';
+import RecordList from './components/RecordList';
 import Edit from './components/edit';
 import Create from './components/create';
 import Dashboard from './components/dashboard';

@@ -14,7 +14,7 @@ export const fetchTransactions = () => {
 export const saveTransaction = (payload) => {
   return dispatch => {
   console.log('Hello')
-   client.post('http://localhost:5000/transactions/add',{body:JSON.stringify(payload)}).then((data) => {
+   client.post('http://localhost:5000/transactions/add',{...payload}).then((data) => {
 
     dispatch({type: actionTypes.SAVE_TRANSACTION});
     dispatch({type: actionTypes.SAVE_TRANSACTION_SUCCESS});
@@ -28,9 +28,9 @@ export const addTransaction = () => ({
   type: actionTypes.ADD_TRANSACTION
 });
 
-export const fetchTransaction = () => ({
-  type: actionTypes.FETCH_TRANSACTIONS
-});
+// export const fetchTransaction = () => ({
+//   type: actionTypes.FETCH_TRANSACTIONS
+// });
 
 export const fetchCategories = () => {
   return async dispatch => {
@@ -44,6 +44,6 @@ export const fetchCategories = () => {
 export const fetchTransactionType=() => {
   return async dispatch => {
     const response = await client.get('http://localhost:5000/transaction/transactionType',{});
-    dispatch({type : actionTypes.FETCH_TRANSACTION_TYPE_SUCCESS, data : response.data})
+    dispatch({type : actionTypes.FETCH_TRANSACTION_TYPE_SUCCESS})
   }
 }
