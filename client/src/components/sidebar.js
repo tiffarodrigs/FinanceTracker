@@ -16,7 +16,7 @@ export default function Sidebar() {
         <Icon type='dashboard' />
       </Link>
       <Link to='/recordList'><Icon type='transaction' /></Link>
-      <Link to='/recordList'><Icon type='card' /></Link>
+      <Link to='/accounts'><Icon type='card' /></Link>
       <Link to='/recordList'><Icon type='budget' /></Link>
     </div>
   );

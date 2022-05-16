@@ -5,6 +5,7 @@ import {transactionType} from './transactionTypeReducer';
 import { accounts } from './accountReducer';
 import { login } from './loginReducer';
 import {setToken} from './../App';
+import { accountTypes } from './accountsTypeReducer';
 
 const rootReducer = combineReducers({
 
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   categories,
   transactionType,
   accounts,
-  login
+  login,
+  accountTypes
  
 });
 export default rootReducer;

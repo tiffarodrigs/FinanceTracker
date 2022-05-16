@@ -47,6 +47,14 @@ export const fetchTransactionType=() => {
     dispatch({type : actionTypes.FETCH_TRANSACTION_TYPE_SUCCESS, data: response.data})
   }
 }
+
+export const fetchAccountTypes=() => {
+  return async dispatch => {
+    const response = await client.get('http://localhost:5000/accounts/types',{});
+    dispatch({type : actionTypes.FETCH_ACCOUNT_TYPE_SUCCESS, data: response.data})
+  }
+}
+
 export const fetchAccount=() => {
   return async dispatch => {
     const response = await client.get('http://localhost:5000/users/627ca7e3d894e4be9eee0da0/accounts',{});
@@ -56,6 +64,8 @@ export const fetchAccount=() => {
 export const validateUser=({name, password}) => {
   return async dispatch => {
     const response = await client.get(`http://localhost:5000/login?userName=${name}&password=${password}`,{});
+    if(response?.data?.token)
+      sessionStorage.setItem('token', response.data.token);
     dispatch({type : actionTypes.USER_VALIDATE_SUCCESS, data: response.data})
   }
 }

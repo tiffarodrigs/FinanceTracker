@@ -16,7 +16,7 @@ loginRoutes.route("/login").get(function (req, res) {
       console.log(result.length);
       if (err) throw err;
       if(result.length === 1)
-        res.json(result);
+        res.json({token: 'test123'});
         if(result.length === 0)
         {
           res.json({error: 'Invalid error'});}

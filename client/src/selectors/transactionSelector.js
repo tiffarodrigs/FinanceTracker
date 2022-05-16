@@ -12,6 +12,34 @@ const selectAvailableStartingBalance = createSelector(
   }
 );
 
+const selectCurrentBalanceByAccount = createSelector([selectTransactions], (transactions) => {
+
+  return transactions.reduce((final, transaction) => {
+    console.log({final, transaction})
+    if(transaction[transaction.account]){
+      final[transaction.account] = Number(final[transaction.account]) + Number(transaction.value);
+    } else {
+      final[transaction.account] = Number(transaction.value);
+    }
+    return final;
+  }, {});
+})
+
+export const selectAccountsForDisplay = createSelector(
+  [selectAccounts, selectCurrentBalanceByAccount],
+  (accounts, currentBalanceByAccount) => {
+    console.log({currentBalanceByAccount});
+    const clonedAccounts = [...accounts];
+    return clonedAccounts.map((account) => {
+      return {
+        label: account.label ,
+        currentBalance: Number(account.startingBalance) + Number(currentBalanceByAccount[account._id]) ,
+      }
+    })
+    
+  }
+);
+
 export const selectTotalSavings = createSelector(
   [selectTransactions, selectAvailableStartingBalance],
   (transactions, availablestartingBalance) => {

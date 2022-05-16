@@ -1,5 +1,4 @@
-import React from 'react';
-import {useState} from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 // We use Route in order to define the different routes of our application
 import { Route, Routes } from 'react-router-dom';
@@ -14,18 +13,29 @@ import ConnectedRecordList from './components/ConnectedRecordList';
 import Login from './components/Login';
 import ConnectedLogin from './components/ConnectedLogin';
 import useToken from './components/useToken';
+import Accounts from './components/Accounts';
+import ConnectedAccounts from './components/ConnectedAccounts';
 
 
 
 
 const App = () => {
-  const { token, setToken } = useToken();
+  // const { token, setToken } = useToken();
+  const getToken = useCallback(() => {
+    const tokenString = sessionStorage.getItem('token');
+  },[sessionStorage])
+  const [token,setToken] = useState(getToken());
+  useEffect(() => {
+    setToken(sessionStorage.getItem('token'))
+  })
 
-  //const[token,setToken] = useState()
+  
+
+  // const [token,setToken] = useState()
   //const token = getToken();
 
   if(!token){
-    return <ConnectedLogin setToken={setToken}/>
+    return <ConnectedLogin />
   }
   return (
     <>
@@ -39,6 +49,7 @@ const App = () => {
           <Route exact path='/' element={<ConnnectedDashborad />} />
           <Route path='/edit/:id' element={<Edit />} />
           <Route path='/recordlist' element={<ConnectedRecordList />} />
+          <Route path='/accounts' element={<ConnectedAccounts/>} />
         </Routes>
       </div>
       </>
