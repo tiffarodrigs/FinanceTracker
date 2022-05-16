@@ -33,7 +33,7 @@ export const selectAccountsForDisplay = createSelector(
     return clonedAccounts.map((account) => {
       return {
         label: account.label ,
-        currentBalance: Number(account.startingBalance) + Number(currentBalanceByAccount[account._id]) ,
+        currentBalance: Number(account.startingBalance) + Number(currentBalanceByAccount[account._id] || 0) ,
       }
     })
     

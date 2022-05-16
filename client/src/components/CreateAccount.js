@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import BasicSelect from './selectComponent';
-import { TextField, InputLabel, Input, InputAdornment } from '@mui/material';
+import { Button, InputLabel, Input, InputAdornment } from '@mui/material';
 import BasicDatePicker from './basicDatePickerComponent';
 
-export default function CreateAccount({accountTypes}) {
+export default function CreateAccount({ accountTypes, onSaveAccount }) {
   const [accountType, setAccountType] = useState('');
   const [startingBalance, setStartingBalalnce] = useState(0);
   const [accountNickName, setAccountNickName] = useState('');
   return (
-    <form>
-      <InputLabel htmlFor='standard-adornment-amount'>Account Nick Name</InputLabel>
+    <>
+      <InputLabel htmlFor='standard-adornment-amount'>
+        Account Nick Name
+      </InputLabel>
       <Input
         id='standard-adornment-amount'
         value={accountNickName}
@@ -30,6 +32,14 @@ export default function CreateAccount({accountTypes}) {
         onChange={(e) => setStartingBalalnce(e.target.value)}
         startAdornment={<InputAdornment position='start'>$</InputAdornment>}
       />
-    </form>
+      <Button
+        variant='outlined'
+        onClick={() => {
+          onSaveAccount({ accountType, startingBalance, accountNickName });
+        }}
+      >
+        Save
+      </Button>
+    </>
   );
 }

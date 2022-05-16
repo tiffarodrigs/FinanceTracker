@@ -13,7 +13,6 @@ export const fetchTransactions = () => {
 
 export const saveTransaction = (payload) => {
   return dispatch => {
-  console.log('Hello')
    client.post('http://localhost:5000/transactions/add',{...payload}).then((data) => {
 
     dispatch({type: actionTypes.SAVE_TRANSACTION});
@@ -52,6 +51,15 @@ export const fetchAccountTypes=() => {
   return async dispatch => {
     const response = await client.get('http://localhost:5000/accounts/types',{});
     dispatch({type : actionTypes.FETCH_ACCOUNT_TYPE_SUCCESS, data: response.data})
+  }
+}
+
+export const saveAccount=(payload) => {
+  return async dispatch => {
+    const userId = '627ca7e3d894e4be9eee0da0'
+    const response = await client.post(`http://localhost:5000/users/${userId}/accounts/create`,{...payload}); // TODO: revisit and get real time user id
+    dispatch({type : actionTypes.SAVE_ACCOUNT_SUCCESS, data: response.data});
+    dispatch(fetchAccount);
   }
 }
 

@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import { TextField, InputLabel, Input, InputAdornment } from '@mui/material';
+
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import BasicSelect from './selectComponent';
 import BasicDatePicker from './basicDatePickerComponent';
 
@@ -87,7 +91,16 @@ export default function Create({
           />
         </div>
         <div className='form-group'>
-          <BasicDatePicker />
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <DatePicker
+        label="Transaction Date"
+        value={form.date}
+        onChange={(newValue) =>  (updateForm({date: newValue}))
+        }
+        renderInput={(params) => <TextField {...params} />}
+      />
+    </LocalizationProvider>
+
         </div>
         <div className='form-group'>
           <InputLabel htmlFor='standard-adornment-amount'>Amount</InputLabel>

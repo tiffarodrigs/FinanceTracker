@@ -5,7 +5,7 @@ import DialogContent from '@mui/material/DialogContent';
 import MyCard from './myCard';
 import CreateAccount from './CreateAccount'
 
-const Accounts = ({fetchAccount,fetchTransactions, accounts = []}) =>
+const Accounts = ({fetchAccount,fetchTransactions,fetchAccountTypes, accounts = [], accountTypes, onSaveAccount}) =>
 {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -16,7 +16,7 @@ const Accounts = ({fetchAccount,fetchTransactions, accounts = []}) =>
   useEffect(()=>{
     fetchAccount();
     fetchTransactions();
-    
+    fetchAccountTypes();
 
   },[])
   return(
@@ -30,7 +30,7 @@ const Accounts = ({fetchAccount,fetchTransactions, accounts = []}) =>
       </Button>
       <Dialog open={isModalOpen} onClose={toggleIsModalOpen}>
         <DialogContent>
-          <CreateAccount />
+          <CreateAccount accountTypes={accountTypes} onSaveAccount={onSaveAccount}/>
         </DialogContent>
       </Dialog>
     </div>
