@@ -8,6 +8,7 @@ const ObjectId = require("mongodb").ObjectId;
 
 loginRoutes.route("/login").get(function (req, res) {
   let db_connect = dbo.getDb("FinanceTracker");
+  console.log("inside login"+JSON.stringify(req.query))
   db_connect
     .collection("UserInfo")
     .find({userName: req.query.userName, password: req.query.password})

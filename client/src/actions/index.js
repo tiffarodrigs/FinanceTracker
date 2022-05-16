@@ -53,3 +53,9 @@ export const fetchAccount=() => {
     dispatch({type : actionTypes.FETCH_ACCOUNT_SUCCESS, data: response.data})
   }
 }
+export const validateUser=({name, password}) => {
+  return async dispatch => {
+    const response = await client.get(`http://localhost:5000/login?userName=${name}&password=${password}`,{});
+    dispatch({type : actionTypes.USER_VALIDATE_SUCCESS, data: response.data})
+  }
+}
