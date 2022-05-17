@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import BasicSelect from './selectComponent';
 import { Button, InputLabel, Input, InputAdornment } from '@mui/material';
-import BasicDatePicker from './basicDatePickerComponent';
 
 export default function CreateAccount({ accountTypes, onSaveAccount }) {
   const [accountType, setAccountType] = useState('');

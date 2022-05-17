@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
 import {
   TableContainer,
   Paper,
@@ -11,67 +10,20 @@ import {
 } from '@mui/material';
 import ConnectedCreateTransaction from './ConnectedCreateTransaction';
 
-const Record = (props) => (
-  <tr>
-    <td>{props.record.transactionType}</td>
-    <td>{props.record.category}</td>
-    <td>{props.record.date}</td>
-    <td>$ {props.record.value}</td>
-    <td>
-      <Link className='btn btn-link' to={`/edit/${props.record._id}`}>
-        Edit
-      </Link>{' '}
-      |
-      <button
-        className='btn btn-link'
-        onClick={() => {
-          props.deleteRecord(props.record._id);
-        }}
-      >
-        Delete
-      </button>
-    </td>
-  </tr>
-);
-
 export default function RecordList({fetchTransactions, transactions}) {
-  const [records, setRecords] = useState([]);
   // This method fetches the transactions from the database.
   useEffect(() => {
-    fetchTransactions()
+    fetchTransactions();
   }, []);
-
-  // This method will delete a record
-  async function deleteRecord(id) {
-    await fetch(`http://localhost:5000/${id}`, {
-      method: 'DELETE',
-    });
-
-    const newRecords = records.filter((el) => el._id !== id);
-    setRecords(newRecords);
-  }
-
-  // This method will map out the transactions on the table
-  function recordList() {
-    return transactions.map((record) => {
-      return (
-        <Record
-          record={record}
-          deleteRecord={() => deleteRecord(record._id)}
-          key={record.id}
-        />
-      );
-    });
-  }
 
   // This following section will display the table with the transactions of individuals.
   return (
-    <>
-    <Paper sx={{ width: '100%' }}>
+    <div style={{width: '95%', margin:'auto'}}>
+    <Paper sx={{ width: '95%' }}>
       <TableContainer sx={{ maxHeight: 440 }}>
         <Table sx={{ minWidth: 650 }} stickyHeader aria-label='simple table'>
-          <TableHead>
-            <TableRow>
+          <TableHead  key='redordLIst-header'>
+            <TableRow key='redordLIst-header'>
               <TableCell align='right'>Account</TableCell>
               <TableCell align='right'>Transaction Type</TableCell>
               <TableCell align='right'>Category</TableCell>
@@ -84,14 +36,14 @@ export default function RecordList({fetchTransactions, transactions}) {
             {transactions.map((record) => {
               return (
                 <TableRow
-                  key={record.id}
+                  key={record._id}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
-                  <TableCell component='span' scope='row' align='right'>
-                    {record.account.label}
+                  <TableCell scope='row' align='right'>
+                    {record?.account?.label}
                   </TableCell>
-                  <TableCell align='right'>{record.transactionType.label}</TableCell>
-                  <TableCell align='right'>{record.category.label}</TableCell>
+                  <TableCell align='right'>{record?.transactionType?.label}</TableCell>
+                  <TableCell align='right'>{record?.category?.label}</TableCell>
                   <TableCell align='right'>{record.date}</TableCell>
                   <TableCell align='right'>{record.note}</TableCell>
                   <TableCell align='right'>
@@ -105,6 +57,6 @@ export default function RecordList({fetchTransactions, transactions}) {
       </TableContainer>
     </Paper>
     <ConnectedCreateTransaction />
-    </>
+    </div>
   );
 }

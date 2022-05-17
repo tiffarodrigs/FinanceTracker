@@ -1,29 +1,34 @@
-import React from "react";
-import { Typography } from '@mui/material';
-
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
+import React from 'react';
+import {
+  Typography,
+  ListItem,
+  ListItemText,
+  ListItemAvatar,
+  Avatar,
+} from '@mui/material';
 import ImageIcon from '@mui/icons-material/Image';
 
-
-const DashboardTransaction = ({category,date,value, key})=>{
-  return(
-      <ListItem key={key}
+const DashboardTransaction = ({ category, date, value, key }) => {
+  return (
+    <ListItem
+      key={key}
       secondaryAction={
-        <Typography style={{fontSize: "15px"}}variant="caption" align="right">
-        ${value}
+        <Typography
+          style={{ fontSize: '15px' }}
+          variant='caption'
+          align='right'
+        >
+          ${value}
         </Typography>
-         }>
-        <ListItemAvatar>
-          <Avatar>
-            <ImageIcon />
-          </Avatar>
-        </ListItemAvatar>
-        <ListItemText primary={category} secondary={date} />
-      </ListItem>
-   
+      }
+    >
+      <ListItemAvatar>
+        <Avatar>
+          <ImageIcon />
+        </Avatar>
+      </ListItemAvatar>
+      <ListItemText primary={category} secondary={date} />
+    </ListItem>
   );
-}
+};
 export default DashboardTransaction;

@@ -7,13 +7,9 @@ import { Route, Routes } from 'react-router-dom';
 import Sidebar from './components/sidebar';
 
 import Navbar from './components/navbar';
-import Edit from './components/edit';
 import ConnnectedDashborad from './components/ConnectedDashboard';
 import ConnectedRecordList from './components/ConnectedRecordList';
-import Login from './components/Login';
 import ConnectedLogin from './components/ConnectedLogin';
-import useToken from './components/useToken';
-import Accounts from './components/Accounts';
 import ConnectedAccounts from './components/ConnectedAccounts';
 
 
@@ -47,7 +43,6 @@ const App = () => {
 
         {/* <Route exact path='/' element={<Login/>} /> */}
           <Route exact path='/' element={<ConnnectedDashborad />} />
-          <Route path='/edit/:id' element={<Edit />} />
           <Route path='/recordlist' element={<ConnectedRecordList />} />
           <Route path='/accounts' element={<ConnectedAccounts/>} />
         </Routes>

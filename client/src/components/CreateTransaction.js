@@ -1,20 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
 import Create from './create';
 
-const CreateTransaction = ({onClick, onCloseModal, isModalOpen, saveTransaction, fetchCategories, categories,transactionType,fetchTransactionType,accounts,fetchAccount}) => {
-  useEffect(() => {
-    fetchCategories();
-    fetchTransactionType();
-    fetchAccount();
-  },[])
+const CreateTransaction = ({onClick, onCloseModal, isModalOpen, saveTransaction, categories,transactionType,accounts}) => {
   return (
-  <div>
+  <div style={{width: '95%', margin:'auto'}}>
       <Button variant="outlined" onClick={onClick}>
         Add  Transaction
       </Button>

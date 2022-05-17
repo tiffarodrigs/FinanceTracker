@@ -5,7 +5,6 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import BasicSelect from './selectComponent';
-import BasicDatePicker from './basicDatePickerComponent';
 
 export default function Create({
   saveTransaction,
@@ -34,20 +33,6 @@ export default function Create({
   async function onSubmit(e) {
     e.preventDefault();
     saveTransaction({ ...form });
-
-    // When a post request is sent to the create url, we'll add a new record to the database.
-    // const newTransaction = { ...form };
-
-    // const res = await fetch('http://localhost:5000/transactions/add', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(newTransaction),
-    // }).catch((error) => {
-    //   return;
-    // });
-
     setForm({
       account: '',
       transactionType: '',
@@ -92,15 +77,13 @@ export default function Create({
         </div>
         <div className='form-group'>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <DatePicker
-        label="Transaction Date"
-        value={form.date}
-        onChange={(newValue) =>  (updateForm({date: newValue}))
-        }
-        renderInput={(params) => <TextField {...params} />}
-      />
-    </LocalizationProvider>
-
+            <DatePicker
+              label='Transaction Date'
+              value={form.date}
+              onChange={(newValue) => updateForm({ date: newValue })}
+              renderInput={(params) => <TextField {...params} />}
+            />
+          </LocalizationProvider>
         </div>
         <div className='form-group'>
           <InputLabel htmlFor='standard-adornment-amount'>Amount</InputLabel>

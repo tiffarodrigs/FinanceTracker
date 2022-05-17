@@ -6,6 +6,10 @@ import * as actionTypes from './ActionTypes'
 
 export const fetchTransactions = () => {
   return async dispatch => {
+    await dispatch(fetchCategories());
+    await dispatch(fetchAccount());
+    await dispatch(fetchAccountTypes());
+    await dispatch(fetchTransactionType());
     const response = await client.get('http://localhost:5000/transactions',{});
     dispatch({type: actionTypes.FETCH_TRANSACTIONS_SUCCESS, data:response.data});
   }
@@ -14,9 +18,7 @@ export const fetchTransactions = () => {
 export const saveTransaction = (payload) => {
   return dispatch => {
    client.post('http://localhost:5000/transactions/add',{...payload}).then((data) => {
-
     dispatch({type: actionTypes.SAVE_TRANSACTION});
-    dispatch({type: actionTypes.SAVE_TRANSACTION_SUCCESS});
     dispatch(fetchTransactions());
    });
 
@@ -27,16 +29,10 @@ export const addTransaction = () => ({
   type: actionTypes.ADD_TRANSACTION
 });
 
-// export const fetchTransaction = () => ({
-//   type: actionTypes.FETCH_TRANSACTIONS
-// });
-
 export const fetchCategories = () => {
   return async dispatch => {
     const response = await client.get('http://localhost:5000/transaction/categories',{});
-    dispatch({type : actionTypes.FETCH_CATEGORY_SUCCESS, data : response.data})
-
-
+    dispatch({type : actionTypes.FETCH_CATEGORY_SUCCESS, data : response.data});
   }
 }
 

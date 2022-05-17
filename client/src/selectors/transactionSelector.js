@@ -90,7 +90,6 @@ export const selectTransactionForDisplay = createSelector(
     selectTransactionTypeById,
   ],
   (transactions, accountById, categoryById, transactionTypeById) => {
-    // return transactions;
     return transactions.map((transaction) => {
       transaction.account = accountById[transaction.account];
       transaction.category = categoryById[transaction.category];

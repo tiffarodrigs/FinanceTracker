@@ -10,7 +10,6 @@ export default function BasicSelect({
   displayLabel,
   label,
   selectedValue,
-  id,
   onChange,
 }) {
   return (
@@ -26,7 +25,7 @@ export default function BasicSelect({
           {items.map((element) => (
             <MenuItem key={element._id} value={element._id}>{element.label}</MenuItem>
           ))}
-        </Select>
+        </Select>∏
       </FormControl>
     </Box>
   );

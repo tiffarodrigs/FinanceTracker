@@ -8,7 +8,6 @@ const accounts = (state=[],action)=>{
         label: item.nickName
       }))
       return data;
-      // return[...action.data];
     }
     default:
       return state
