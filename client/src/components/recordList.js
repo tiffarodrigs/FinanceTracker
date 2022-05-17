@@ -88,10 +88,10 @@ export default function RecordList({fetchTransactions, transactions}) {
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
                   <TableCell component='span' scope='row' align='right'>
-                    {record.account}
+                    {record.account.label}
                   </TableCell>
-                  <TableCell align='right'>{record.transactionType}</TableCell>
-                  <TableCell align='right'>{record.category}</TableCell>
+                  <TableCell align='right'>{record.transactionType.label}</TableCell>
+                  <TableCell align='right'>{record.category.label}</TableCell>
                   <TableCell align='right'>{record.date}</TableCell>
                   <TableCell align='right'>{record.note}</TableCell>
                   <TableCell align='right'>
