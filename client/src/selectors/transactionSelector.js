@@ -1,5 +1,7 @@
 import { createSelector } from 'reselect';
 
+//A "selector function" is any function that accepts the Redux store 
+//state (or part of the state) as an argument, and returns data that is based on that state.
 const selectTransactions = (state) => state.transactions;
 const selectAccounts = (state) => state.accounts;
 const selectCategories = (state) => state.categories;
@@ -81,6 +83,10 @@ export const selectTotalSavings = createSelector(
     }, availablestartingBalance);
   }
 );
+//createSelector can accept multiple input selectors, which can be provided as 
+//separate arguments or as an array. The results from all the input selectors are 
+//provided as separate arguments to the output selector:
+
 
 export const selectTransactionForDisplay = createSelector(
   [
@@ -90,17 +96,23 @@ export const selectTransactionForDisplay = createSelector(
     selectTransactionTypeById,
   ],
   (transactions, accountById, categoryById, transactionTypeById) => {
+    console.log("transactions : " ,transactions)
     const test =  transactions.reduce((newTransactions, transaction) => {
-      const newTransaction = { ...transaction };
+      const newTransaction = [...transactions];
+      console.log("newTransaction : " ,newTransaction)
 
       newTransaction.account = accountById[transaction.account];
       newTransaction.category = categoryById[transaction.category];
       newTransaction.transactionType =
         transactionTypeById[transaction.transactionType];
+        console.log("newTransaction after : " ,newTransaction)
+        console.log("newTransactions  : " ,newTransactions)
 
-      return newTransactions.push(newTransaction);
+       // newTransactions= Object.assign({ElementList}, newTransactions)
+
+      return newTransactions.push(...newTransaction);
     }, []);
-    console.log(test, transactions);
+    console.log("test : ",test, transactions);
     return test;
     //for every transaction record we are going to map the category id to category name
   }
