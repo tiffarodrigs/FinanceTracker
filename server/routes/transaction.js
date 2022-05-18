@@ -62,11 +62,13 @@ recordRoutes.route('/transaction/transactionType').get(function (req, res) {
 recordRoutes.route('/transactions/add').post(function (req, response) {
   let db_connect = dbo.getDb();
   const { category, transactionType, account, value, date } = req.body;
+  console.log("date",date);
   let myobj = {
     category: ObjectId(category),
     transactionType: ObjectId(transactionType),
     account: ObjectId(account),
     value: Number(value),
+    
     date: new Date(date),
   };
   db_connect.collection('Transactions').insertOne(myobj, function (err, res) {

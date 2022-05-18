@@ -73,7 +73,6 @@ export const selectAccountsForDisplay = createSelector(
 export const selectTotalSavings = createSelector(
   [selectTransactions, selectAvailableStartingBalance],
   (transactions, availablestartingBalance) => {
-    console.log({ transactions, availablestartingBalance });
     return transactions.reduce((total, transaction) => {
       if (transaction.transactionType === 'expense') {
         return total - Number(transaction.value);
@@ -96,23 +95,23 @@ export const selectTransactionForDisplay = createSelector(
     selectTransactionTypeById,
   ],
   (transactions, accountById, categoryById, transactionTypeById) => {
-    console.log("transactions : " ,transactions)
+
     const test =  transactions.reduce((newTransactions, transaction) => {
-      const newTransaction = [...transactions];
-      console.log("newTransaction : " ,newTransaction)
+      const newTransaction = {...transactions};
+      //console.log("newTransaction : " ,newTransaction)
 
       newTransaction.account = accountById[transaction.account];
       newTransaction.category = categoryById[transaction.category];
-      newTransaction.transactionType =
-        transactionTypeById[transaction.transactionType];
-        console.log("newTransaction after : " ,newTransaction)
-        console.log("newTransactions  : " ,newTransactions)
+      newTransaction.transactionType =transactionTypeById[transaction.transactionType];
+         console.log("newTransaction after : " ,newTransaction)
+         console.log("newTransactions  : " ,newTransactions)
 
        // newTransactions= Object.assign({ElementList}, newTransactions)
 
-      return newTransactions.push(...newTransaction);
-    }, []);
-    console.log("test : ",test, transactions);
+       newTransactions.push(newTransaction);
+       return newTransactions;
+    },[]);
+    //console.log("test : ",test);
     return test;
     //for every transaction record we are going to map the category id to category name
   }

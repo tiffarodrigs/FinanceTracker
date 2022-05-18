@@ -4,6 +4,7 @@ import { fetchTransactions } from '../actions';
 import {selectTransactionForDisplay} from '../selectors/transactionSelector'
 
 const mapStateToProps = (state) => ({
+
   transactions: selectTransactionForDisplay(state),
 });
 

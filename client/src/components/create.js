@@ -89,7 +89,7 @@ export default function Create({
           <Input
             type='number'
             id='standard-adornment-amount'
-            value={form.values}
+            value={form.value}
             onChange={(e) => updateForm({ value: e.target.value })}
             startAdornment={<InputAdornment position='start'>$</InputAdornment>}
           />
