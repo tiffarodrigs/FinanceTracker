@@ -23,7 +23,6 @@ export default function Create({
 
   // These methods will update the state properties.
   function updateForm(value) {
-    console.log('value', value);
     return setForm((prev) => {
       return { ...prev, ...value };
     });

@@ -2,6 +2,7 @@ import * as actionTypes from '../actions/ActionTypes';
 const transactions = (state = [], action) => {
   switch (action.type) {
     case actionTypes.FETCH_TRANSACTIONS_SUCCESS: {
+      console.log(action.data)
       return [...action.data];
     }
     default:

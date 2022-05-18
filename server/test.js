@@ -8,7 +8,6 @@ dbo.connectToServer(function (err) {
   let db_connect = dbo.getDb();
   db_connect.collection("transactions").insertMany(data, function (err, res) {
     if (err) throw err;
-    console.log(res)
   });
 });
 

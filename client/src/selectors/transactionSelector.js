@@ -56,7 +56,6 @@ const selectCurrentBalanceByAccount = createSelector(
 export const selectAccountsForDisplay = createSelector(
   [selectAccounts, selectCurrentBalanceByAccount],
   (accounts, currentBalanceByAccount) => {
-    console.log({ currentBalanceByAccount });
     const clonedAccounts = [...accounts];
     return clonedAccounts.map((account) => {
       return {
@@ -72,6 +71,7 @@ export const selectAccountsForDisplay = createSelector(
 export const selectTotalSavings = createSelector(
   [selectTransactions, selectAvailableStartingBalance],
   (transactions, availablestartingBalance) => {
+    console.log({ transactions, availablestartingBalance });
     return transactions.reduce((total, transaction) => {
       if (transaction.transactionType === 'expense') {
         return total - Number(transaction.value);
@@ -90,14 +90,18 @@ export const selectTransactionForDisplay = createSelector(
     selectTransactionTypeById,
   ],
   (transactions, accountById, categoryById, transactionTypeById) => {
-    return transactions.map((transaction) => {
-      transaction.account = accountById[transaction.account];
-      transaction.category = categoryById[transaction.category];
-      transaction.transactionType =
+    const test =  transactions.reduce((newTransactions, transaction) => {
+      const newTransaction = { ...transaction };
+
+      newTransaction.account = accountById[transaction.account];
+      newTransaction.category = categoryById[transaction.category];
+      newTransaction.transactionType =
         transactionTypeById[transaction.transactionType];
 
-      return transaction;
-    });
+      return newTransactions.push(newTransaction);
+    }, []);
+    console.log(test, transactions);
+    return test;
     //for every transaction record we are going to map the category id to category name
   }
 );
