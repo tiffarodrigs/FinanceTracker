@@ -78,7 +78,7 @@ export default function Create({
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DatePicker
               label='Transaction Date'
-              value={form.date}
+              value={form.date || null}
               onChange={(newValue) => updateForm({ date: newValue })}
               renderInput={(params) => <TextField {...params} />}
             />

@@ -13,8 +13,10 @@ const Accounts = ({
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const toggleIsModalOpen = useCallback(() => {
-    setIsModalOpen(!isModalOpen);
-  }, [setIsModalOpen]);
+    console.log("close trigger", isModalOpen);
+    const flag = !isModalOpen;
+    setIsModalOpen(flag);
+  }, [setIsModalOpen,isModalOpen]);
 
   useEffect(() => {
     fetchTransactions();
@@ -25,7 +27,7 @@ const Accounts = ({
         <MyCard
           title={account.label}
           type={'medium'}
-          content={account.currentBalance}
+          content={account.value}
         />
       ))}
 

@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
 import { fetchTransactions } from '../actions';
-import {selectTotalSavings, selectTransactionForDisplay} from '../selectors/transactionSelector'
+import {selectAccountsForDisplay, selectTotalSavings, selectTransactionForDisplay} from '../selectors/transactionSelector'
 import Dashboard from './Dashboard';
 
 const mapStateToProps = (state) => ({
   transactions: selectTransactionForDisplay(state),
-  balance: selectTotalSavings(state)
+  balance: selectTotalSavings(state),
+  accounts: selectAccountsForDisplay(state)
 });
 
 const mapDispatchToProps = {

@@ -23,7 +23,7 @@ export default function RecordList({fetchTransactions, transactions}) {
       <TableContainer sx={{ maxHeight: 440 }}>
         <Table sx={{ minWidth: 650 }} stickyHeader aria-label='simple table'>
           <TableHead  key='redordLIst-header'>
-            <TableRow key='redordLIst-header'>
+            <TableRow key='redordLIst-header-ROW'>
               <TableCell align='right'>Account</TableCell>
               <TableCell align='right'>Transaction Type</TableCell>
               <TableCell align='right'>Category</TableCell>
@@ -34,6 +34,7 @@ export default function RecordList({fetchTransactions, transactions}) {
           </TableHead>
           <TableBody>
             {transactions.map((record) => {
+              console.log("record" ,record)
               return (
                 <TableRow
                   key={record._id}
@@ -44,7 +45,7 @@ export default function RecordList({fetchTransactions, transactions}) {
                   </TableCell>
                   <TableCell align='right'>{record?.transactionType?.label}</TableCell>
                   <TableCell align='right'>{record?.category?.label}</TableCell>
-                  <TableCell align='right'>{record.date}</TableCell>
+                  <TableCell align='right'>{record?.date}</TableCell>
                   <TableCell align='right'>{record.note}</TableCell>
                   <TableCell align='right'>
                     $ {record.value ? Number(record.value).toFixed(2) : '0.00'}

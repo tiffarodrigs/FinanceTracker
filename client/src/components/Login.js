@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { TextField, InputLabel, Input, InputAdornment } from '@mui/material';
 import Button from '@mui/material/Button';
-export default function Login({ validateUser, setToken }) {
+export default function Login({ validateUser, setToken, token }) {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const onChangeUserName = useCallback((e) => {

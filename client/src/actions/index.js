@@ -17,8 +17,8 @@ export const fetchTransactions = () => {
 
 export const saveTransaction = (payload) => {
   return dispatch => {
-   client.post('http://localhost:5000/transactions/add',{...payload}).then((data) => {
     dispatch({type: actionTypes.SAVE_TRANSACTION});
+   client.post('http://localhost:5000/transactions/add',{...payload}).then((data) => {
     dispatch(fetchTransactions());
    });
 

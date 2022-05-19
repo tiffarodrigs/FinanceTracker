@@ -7,6 +7,15 @@ const selectAccounts = (state) => state.accounts;
 const selectCategories = (state) => state.categories;
 const selectTransactionType = (state) => state.transactionType;
 
+
+// TODO: move this to utils file
+const formatDate = (dateString) => {
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]; // set months in order
+  const date = new Date(dateString);
+  console.log({dateString,date})
+  return `${months[date.getMonth()]} - ${date.getDate()}, ${date.getFullYear()}`
+}
+
 const selectAccountById = createSelector([selectAccounts], (accounts) => {
   return accounts.reduce((result, account) => {
     result[account._id] = account;
@@ -41,14 +50,15 @@ const selectAvailableStartingBalance = createSelector(
 );
 
 const selectCurrentBalanceByAccount = createSelector(
-  [selectTransactions],
-  (transactions) => {
+  [selectTransactions, selectTransactionTypeById],
+  (transactions, transactionTypeById) => {
     return transactions.reduce((final, transaction) => {
       if (transaction[transaction.account]) {
-        final[transaction.account] =
-          Number(final[transaction.account]) + Number(transaction.value);
+        final[transaction.account] = transactionTypeById[transaction.transactionType].label === 'expense' ? 
+          Number(final[transaction.account]) - Number(transaction.value):Number(final[transaction.account]) + Number(transaction.value);
       } else {
-        final[transaction.account] = Number(transaction.value);
+        final[transaction.account] = transactionTypeById[transaction.transactionType].label !== 'expense' ? 
+        Number(transaction.value): - Number(transaction.value);Number(transaction.value);
       }
       return final;
     }, {});
@@ -62,30 +72,13 @@ export const selectAccountsForDisplay = createSelector(
     return clonedAccounts.map((account) => {
       return {
         label: account.label,
-        currentBalance:
+        value:
           Number(account.startingBalance) +
           Number(currentBalanceByAccount[account._id] || 0),
       };
     });
   }
 );
-
-export const selectTotalSavings = createSelector(
-  [selectTransactions, selectAvailableStartingBalance],
-  (transactions, availablestartingBalance) => {
-    return transactions.reduce((total, transaction) => {
-      if (transaction.transactionType === 'expense') {
-        return total - Number(transaction.value);
-      } else if (transaction.transactionType === 'income') {
-        return total + Number(transaction.value);
-      }
-    }, availablestartingBalance);
-  }
-);
-//createSelector can accept multiple input selectors, which can be provided as 
-//separate arguments or as an array. The results from all the input selectors are 
-//provided as separate arguments to the output selector:
-
 
 export const selectTransactionForDisplay = createSelector(
   [
@@ -97,14 +90,12 @@ export const selectTransactionForDisplay = createSelector(
   (transactions, accountById, categoryById, transactionTypeById) => {
 
     const test =  transactions.reduce((newTransactions, transaction) => {
-      const newTransaction = {...transactions};
-      //console.log("newTransaction : " ,newTransaction)
+     const newTransaction = {...transaction};
 
       newTransaction.account = accountById[transaction.account];
       newTransaction.category = categoryById[transaction.category];
       newTransaction.transactionType =transactionTypeById[transaction.transactionType];
-         console.log("newTransaction after : " ,newTransaction)
-         console.log("newTransactions  : " ,newTransactions)
+      newTransaction.date = formatDate(transaction.date);
 
        // newTransactions= Object.assign({ElementList}, newTransactions)
 
@@ -116,3 +107,20 @@ export const selectTransactionForDisplay = createSelector(
     //for every transaction record we are going to map the category id to category name
   }
 );
+
+export const selectTotalSavings = createSelector(
+  [selectTransactionForDisplay, selectAvailableStartingBalance],
+  (transactions, availablestartingBalance) => {
+    return transactions.reduce((total, transaction) => {
+      if (transaction.transactionType.label === 'expense') {
+        return total - Number(transaction.value);
+      } else if (transaction.transactionType.label === 'income') {
+        return total + Number(transaction.value);
+      }
+    }, availablestartingBalance);
+  }
+);
+//createSelector can accept multiple input selectors, which can be provided as 
+//separate arguments or as an array. The results from all the input selectors are 
+//provided as separate arguments to the output selector:
+

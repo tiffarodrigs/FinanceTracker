@@ -36,15 +36,6 @@ const AppBar = styled(
   }),
 }));
 
-const Drawer = styled(MuiDrawer)(({ theme }) => ({
-  width: drawerWidth,
-  flexShrink: 0,
-  whiteSpace: 'nowrap',
-  boxSizing: 'border-box',
-  ...closedMixin(theme),
-  '& .MuiDrawer-paper': closedMixin(theme),
-}));
-
 const settings = ['Logout'];
 
 const ResponsiveAppBar = () => {
@@ -68,9 +59,7 @@ const ResponsiveAppBar = () => {
   };
 
   return (
-    <Box>
       <AppBar position='fixed'>
-        <Container maxWidth='xl'>
           <Toolbar disableGutters>
             <Typography
               variant='h6'
@@ -80,14 +69,7 @@ const ResponsiveAppBar = () => {
             >
               LOGO
             </Typography>
-            <Typography
-              variant='h6'
-              noWrap
-              component='div'
-              sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
-            >
-              LOGO
-            </Typography>
+            
             <Box
               sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}
             ></Box>
@@ -125,9 +107,7 @@ const ResponsiveAppBar = () => {
               </Menu>
             </Box>
           </Toolbar>
-        </Container>
       </AppBar>
-    </Box>
   );
 };
 export default ResponsiveAppBar;
