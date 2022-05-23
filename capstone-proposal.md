@@ -15,6 +15,9 @@
 * _Express_
 * _Node_
 * _Mongo_
+* _Material UI_
+* _Redux_
+
 
 ### Stretch Goals
 * _Data visual illustration of transaction_
