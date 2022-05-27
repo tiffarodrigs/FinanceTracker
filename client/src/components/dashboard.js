@@ -7,14 +7,14 @@ import TransactionCard from './TransactionCard'
 import { Link } from 'react-router-dom';
 import { Typography } from '@mui/material';
 
-const Dashboard = ({ fetchTransactions, transactions, balance, accounts }) => {
+const Dashboard = ({ fetchTransactions, transactions, balance, accounts,totalIncome }) => {
   useEffect(() => {
     fetchTransactions();
   }, []);
   return (
     <div style={{ display: 'flex', padding: '5px' }}>
       <MyCard title={'Total Balance'} content={`$${balance}`} />
-      <MyCard title={'income'} content={'$7000'} />
+      <MyCard title={'income'} content={`$${totalIncome}`} />
       <MyCard
         type='wide'
         title={'Transaction History'}

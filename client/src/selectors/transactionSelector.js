@@ -120,6 +120,14 @@ export const selectTotalSavings = createSelector(
     }, availablestartingBalance);
   }
 );
+
+export const selectTotalIncome = createSelector([selectTransactions, selectTransactionTypeById] ,(transactions, transactionTypeById) => {
+  const totalIncome = transactions.reduce((total, transaction) => {
+    const newTotal = transactionTypeById[transaction.transactionType].label === 'income' ? total + Number(transaction.value) : total;
+    return newTotal;
+  },0)
+  return totalIncome;
+});
 //createSelector can accept multiple input selectors, which can be provided as 
 //separate arguments or as an array. The results from all the input selectors are 
 //provided as separate arguments to the output selector:

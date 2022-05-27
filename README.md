@@ -50,7 +50,8 @@ PORT=5000`_
 * _WIP - Account management_
 
 
-
+## Resources
+* (https://www.mongodb.com/languages/mern-stack-tutorial)
 
 
 ## License
