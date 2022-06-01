@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
-import { TextField, InputLabel, Input, InputAdornment } from '@mui/material';
+import {
+  Button,
+  TextField,
+  InputLabel,
+  Input,
+  InputAdornment,
+  FormControl,
+} from '@mui/material';
+import Box from '@mui/material/Box';
 
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -12,6 +20,7 @@ export default function Create({
   transactionType,
   accounts,
 }) {
+  //const [selected, setSelected] = React.useState('');
   const [form, setForm] = useState({
     account: '',
     transactionType: '',
@@ -45,34 +54,41 @@ export default function Create({
   return (
     <div>
       <h3>Create New Transaction</h3>
+
       <form onSubmit={onSubmit}>
         <div className='form-group'>
-          <BasicSelect
-            items={accounts}
-            displayLabel='Account'
-            label='account'
-            selectedValue={form.account}
-            onChange={(e) => updateForm({ account: e.target.value })}
-          />
+          <FormControl sx={{ m: 1, minWidth: 200 }}>
+            <BasicSelect
+              items={accounts}
+              displayLabel='Account'
+              label='account'
+              selectedValue={form.account}
+              onChange={(e) => updateForm({ account: e.target.value })}
+            />
+          </FormControl>
         </div>
         <div className='form-group'>
-          <BasicSelect
-            items={transactionType}
-            displayLabel='Transaction Type'
-            label='transactionType'
-            selectedValue={form.transactionType}
-            onChange={(e) => updateForm({ transactionType: e.target.value })}
-          />
+          <FormControl sx={{ m: 1, minWidth: 200 }}>
+            <BasicSelect
+              items={transactionType}
+              displayLabel='Transaction Type'
+              label='transactionType'
+              selectedValue={form.transactionType}
+              onChange={(e) => updateForm({ transactionType: e.target.value })}
+            />
+          </FormControl>
         </div>
         <div className='form-group'>
-          <BasicSelect
-            items={categories}
-            displayLabel='Category'
-            label='Category'
-            selectedValue={form.category}
-            id='123'
-            onChange={(e) => updateForm({ category: e.target.value })}
-          />
+          <FormControl sx={{ m: 1, minWidth: 200 }}>
+            <BasicSelect
+              items={categories}
+              displayLabel='Category'
+              label='Category'
+              selectedValue={form.category}
+              id='123'
+              onChange={(e) => updateForm({ category: e.target.value })}
+            />
+          </FormControl>
         </div>
         <div className='form-group'>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -95,11 +111,19 @@ export default function Create({
           />
         </div>
         <div className='form-group'>
-          <input
+          {/* <input
             type='submit'
             value='Create transaction'
             className='btn btn-primary'
-          />
+          /> */}
+          <Button
+            variant='outlined'
+            type='submit'
+            value='Create transaction'
+            sx={{ m: 1, minWidth: 200 }}
+          >
+            Save
+          </Button>
         </div>
       </form>
     </div>

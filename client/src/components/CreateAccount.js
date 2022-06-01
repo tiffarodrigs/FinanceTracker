@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import BasicSelect from './selectComponent';
-import { Button, InputLabel, Input, InputAdornment } from '@mui/material';
+import Box from '@mui/material/Box';
+
+import { Button, InputLabel, Input, InputAdornment,TextField } from '@mui/material';
 
 export default function CreateAccount({ accountTypes, onSaveAccount }) {
   const [accountType, setAccountType] = useState('');
@@ -8,14 +10,24 @@ export default function CreateAccount({ accountTypes, onSaveAccount }) {
   const [accountNickName, setAccountNickName] = useState('');
   return (
     <>
-      <InputLabel htmlFor='standard-adornment-amount'>
+    <Box
+      
+      sx={{
+        '& > :not(style)': { m: 1, width: '25ch' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
+    <TextField id="standard-adornment-amount" label="Account Nick Name" variant="outlined"     value={accountNickName}
+        onChange={(e) => setAccountNickName(e.target.value)}/>
+      {/* <InputLabel htmlFor='standard-adornment-amount'>
         Account Nick Name
       </InputLabel>
       <Input
         id='standard-adornment-amount'
         value={accountNickName}
         onChange={(e) => setAccountNickName(e.target.value)}
-      />
+      /> */}
       <BasicSelect
         items={accountTypes}
         displayLabel='Account Type'
@@ -39,6 +51,12 @@ export default function CreateAccount({ accountTypes, onSaveAccount }) {
       >
         Save
       </Button>
+      <Button variant="outlined" onClick={() => {
+          onSaveAccount({ accountType, startingBalance, accountNickName });
+        }}
+      >
+        Save</Button>
+      </Box>
     </>
   );
 }
