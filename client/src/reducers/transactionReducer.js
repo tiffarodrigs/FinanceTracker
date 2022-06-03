@@ -12,9 +12,12 @@ const transactions = (state = [], action) => {
 
 const isModalShown = (state = false, action) => {
   switch (action.type) {
+    case actionTypes.ADD_ACCOUNT:
     case actionTypes.ADD_TRANSACTION:
       return true;
     case actionTypes.SAVE_TRANSACTION:
+    case actionTypes.SAVE_ACCOUNT_SUCCESS:
+    case actionTypes.CLOSE_MODAL:
       return false;
     default:
       return state;

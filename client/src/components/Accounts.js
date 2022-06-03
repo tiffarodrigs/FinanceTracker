@@ -10,12 +10,13 @@ const Accounts = ({
   accounts = [],
   accountTypes,
   onSaveAccount,
+  isModalOpen,
+  openModal,
+  closeModal
 }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const toggleIsModalOpen = useCallback(() => {
-    const flag = !isModalOpen;
-    setIsModalOpen(flag);
-  }, [setIsModalOpen,isModalOpen]);
+    !isModalOpen ? openModal() : closeModal();
+  }, [isModalOpen]);
 
   useEffect(() => {
     fetchTransactions();

@@ -50,21 +50,22 @@ export const fetchAccountTypes=() => {
   }
 }
 
-export const saveAccount=(payload) => {
-  return async dispatch => {
-    const userId = '627ca7e3d894e4be9eee0da0'
-    const response = await client.post(`http://localhost:5000/users/${userId}/accounts/create`,{...payload}); // TODO: revisit and get real time user id
-    dispatch({type : actionTypes.SAVE_ACCOUNT_SUCCESS, data: response.data});
-    dispatch(fetchAccount);
-  }
-}
-
 export const fetchAccount=() => {
   return async dispatch => {
     const response = await client.get('http://localhost:5000/users/627ca7e3d894e4be9eee0da0/accounts',{});
     dispatch({type : actionTypes.FETCH_ACCOUNT_SUCCESS, data: response.data})
   }
 }
+
+export const saveAccount=(payload) => {
+  return async dispatch => {
+    const userId = '627ca7e3d894e4be9eee0da0'
+    await client.post(`http://localhost:5000/users/${userId}/accounts/create`,{...payload}); // TODO: revisit and get real time user id
+    await dispatch({type : actionTypes.SAVE_ACCOUNT_SUCCESS});
+    await dispatch(fetchAccount());
+  }
+}
+
 export const validateUser=({name, password}) => {
   return async dispatch => {
     const response = await client.get(`http://localhost:5000/login?userName=${name}&password=${password}`,{});
@@ -72,4 +73,11 @@ export const validateUser=({name, password}) => {
       sessionStorage.setItem('token', response.data.token);
     dispatch({type : actionTypes.USER_VALIDATE_SUCCESS, data: response.data})
   }
+}
+
+export const openModal=() =>{
+  return async (dispatch) => dispatch({type: actionTypes.ADD_ACCOUNT})
+}
+export const closeModal=() =>{
+  return async (dispatch) => dispatch({type: actionTypes.CLOSE_MODAL})
 }

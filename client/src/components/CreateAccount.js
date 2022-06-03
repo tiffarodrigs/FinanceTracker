@@ -20,14 +20,7 @@ export default function CreateAccount({ accountTypes, onSaveAccount }) {
     >
     <TextField id="standard-adornment-amount" label="Account Nick Name" variant="outlined"     value={accountNickName}
         onChange={(e) => setAccountNickName(e.target.value)}/>
-      {/* <InputLabel htmlFor='standard-adornment-amount'>
-        Account Nick Name
-      </InputLabel>
-      <Input
-        id='standard-adornment-amount'
-        value={accountNickName}
-        onChange={(e) => setAccountNickName(e.target.value)}
-      /> */}
+     
       <BasicSelect
         items={accountTypes}
         displayLabel='Account Type'
