@@ -53,7 +53,7 @@ const selectCurrentBalanceByAccount = createSelector(
   [selectTransactions, selectTransactionTypeById],
   (transactions, transactionTypeById) => {
     return transactions.reduce((final, transaction) => {
-      if (transaction[transaction.account]) {
+      if (final[transaction.account]) {
         final[transaction.account] = transactionTypeById[transaction.transactionType].label === 'expense' ? 
           Number(final[transaction.account]) - Number(transaction.value):Number(final[transaction.account]) + Number(transaction.value);
       } else {
@@ -128,6 +128,18 @@ export const selectTotalIncome = createSelector([selectTransactions, selectTrans
   },0)
   return totalIncome;
 });
+
+export const selectCategoryByTransactionType = createSelector([selectCategories,selectTransactionType],(categories,transactionTypes)=>{
+  return categories.reduce((result,category)=>{
+    if( result[category.transactionTypeId]){
+      result[category.transactionTypeId].push(category)
+    } else{
+      result[category.transactionTypeId] = [category] 
+    }
+  return result
+  },{})
+
+})
 //createSelector can accept multiple input selectors, which can be provided as 
 //separate arguments or as an array. The results from all the input selectors are 
 //provided as separate arguments to the output selector:

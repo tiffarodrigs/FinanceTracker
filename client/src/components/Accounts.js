@@ -13,7 +13,6 @@ const Accounts = ({
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const toggleIsModalOpen = useCallback(() => {
-    console.log("close trigger", isModalOpen);
     const flag = !isModalOpen;
     setIsModalOpen(flag);
   }, [setIsModalOpen,isModalOpen]);

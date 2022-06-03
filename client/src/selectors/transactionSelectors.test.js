@@ -1,4 +1,4 @@
-import { selectTransactionForDisplay, selectTotalSavings, selectTotalIncome } from './transactionSelector';
+import { selectTransactionForDisplay, selectTotalSavings, selectTotalIncome, selectAccountsForDisplay } from './transactionSelector';
 describe('selectors', () => {
   let state;
   beforeEach(() => {
@@ -29,12 +29,15 @@ describe('selectors', () => {
           date: '1652684400000',
         }
       ],
-      accounts: [{ _id: 1, startingBalance: 100 },{_id: 2, startingBalance: 200}],
+      accounts: [{ _id: 1,label: 'Acc 1', startingBalance: 100 },{_id: 2, startingBalance: 200, label: 'Acc 2'}],
       categories: [{ _id: 1, label: 'Cat 1' },{ _id: 2, label: 'Cat 2' }],
       transactionType: [{ _id: 1, label: 'expense' },{ _id: 2, label: 'income' }],
     };
   });
-  it('selectAccountsForDisplay', () => {
+  it('selectAccountsForDisplay',()=>{
+    expect(selectAccountsForDisplay(state)).toEqual([{"label": 'Acc 1', "value": 190}, {"label": 'Acc 2', "value": 300}])
+  })
+  it('selectTransactionForDisplay', () => {
     expect(selectTransactionForDisplay(state)).toEqual([
       {
         _id: '1',
@@ -68,4 +71,5 @@ describe('selectors', () => {
   it('selectTotalIncome',() =>{
     expect(selectTotalIncome(state)).toEqual(200);
   })
+  it
 });

@@ -51,11 +51,7 @@ export default function CreateAccount({ accountTypes, onSaveAccount }) {
       >
         Save
       </Button>
-      <Button variant="outlined" onClick={() => {
-          onSaveAccount({ accountType, startingBalance, accountNickName });
-        }}
-      >
-        Save</Button>
+      
       </Box>
     </>
   );

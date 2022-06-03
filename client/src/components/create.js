@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useMemo } from 'react';
 import {
   Button,
   TextField,
@@ -20,7 +20,7 @@ export default function Create({
   transactionType,
   accounts,
 }) {
-  //const [selected, setSelected] = React.useState('');
+  const [selected, setSelected] = React.useState('');
   const [form, setForm] = useState({
     account: '',
     transactionType: '',
@@ -28,6 +28,13 @@ export default function Create({
     date: '',
     value: '',
   });
+  const calculatedCategory = useMemo(()=>{
+   if(form.transactionType)
+   {
+     return categories[form.transactionType]
+   }
+   return []
+  },[categories,form.transactionType])
   // const navigate = useNavigate();
 
   // These methods will update the state properties.
@@ -36,7 +43,9 @@ export default function Create({
       return { ...prev, ...value };
     });
   }
-
+  const changeSelectOptionHandler = (event) => {
+    setSelected(event.target.value);
+  };
   // This function will handle the submission.
   async function onSubmit(e) {
     e.preventDefault();
@@ -69,19 +78,20 @@ export default function Create({
         </div>
         <div className='form-group'>
           <FormControl sx={{ m: 1, minWidth: 200 }}>
+          
             <BasicSelect
               items={transactionType}
               displayLabel='Transaction Type'
               label='transactionType'
               selectedValue={form.transactionType}
-              onChange={(e) => updateForm({ transactionType: e.target.value })}
+              onChange={(e) => {updateForm({ transactionType: e.target.value })}}
             />
           </FormControl>
         </div>
         <div className='form-group'>
           <FormControl sx={{ m: 1, minWidth: 200 }}>
             <BasicSelect
-              items={categories}
+              items={calculatedCategory}
               displayLabel='Category'
               label='Category'
               selectedValue={form.category}
